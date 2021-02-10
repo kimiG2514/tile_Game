@@ -17,12 +17,30 @@ possibleMoves3 = (
 (2,4,8),     
 (3,7),       
 (4,6,8),     
-(5,7))       
+(5,7))
+
+possibleMoves4 = ( 
+(1,4     ),  # square  0
+(0,5,2),     # square  1
+(1,6,7),     # square  2
+(2,7),       # square  3
+(0,5,8),     # square  4
+(1,4,6,9),   # square  5
+(2,5,7,10),  # square  6
+(3,6,11),    # square  7
+(4,9,12),    # square  8
+(5,8,10,13), # square  9
+(6,9,11,14), # square 10
+(7,10,15),   # square 11
+(8,13),      # square 12
+(9,12,14),   # square 13
+(10,13,15),  # square 14
+(11,14))     # square 15
 
 possibleMoves5 = (
 (1, 5    ),  
-(0, 6, 2),   
-(1, 7, 3),
+(0, 2, 6),   
+(1, 3, 7),
 (2, 4, 8),
 (3, 9),
 (0, 6, 10),
@@ -64,17 +82,21 @@ class Puzzle :
     def __str__(self):
         return str(self.map)
     
-    def setGoal(self):
-        if len(self.state) == 9:
-            return goal3
-        if len(self.state) == 25:
-            return goal5
+    def setGoal(self) :
+      if len(self.state) == 9:
+        return goal3
+      if len(self.state) == 16:
+        return goal4
+      if len(self.state) == 24:
+        return goal5
 
     def setLegalMoves(self) :
-        if len(self.state) == 9:
-            return possibleMoves3
-        if len(self.state) == 25:
-            return possibleMoves5
+      if len(self.state) == 9:
+        return possibleMoves3
+      if len(self.state) == 16:
+        return possibleMoves4
+      if len(self.state) == 25:
+        return possibleMoves5
 
     def changeMap(self):       
         self.map = ''.join(str(e) for e in self.state)
@@ -84,6 +106,8 @@ def printBoard(board):
     board = board.state
     if len(board) == 9:
         print("\n".join([" ".join(board[i:i+3]) for i in range(0,len(board),3)]),'\n')
+    if len(board) == 16:
+        print("\n".join([" ".join(board[i:i+4]) for i in range(0,len(board),4)]),'\n')
     if len(board) == 25:
         print("\n".join([" ".join(board[i:i+5]) for i in range(0,len(board),5)]),'\n')
 
@@ -110,24 +134,25 @@ def breadth(board):
 
         index = node.state.index('_') 
        
-        for path in node.legalMoves[index]:
+        for path in node.legalMoves[index]:          
             tryMove = node.state[:]
             newNode = Puzzle(tryMove)
             newNode.state[index] = newNode.state[path]
             newNode.state[path] = '_' 
-            newNode.changeMap()         
+            newNode.changeMap()     
             
             if newNode.map not in visited:
-                printBoard(newNode)
                 playQueue.append(newNode)
                 visited.add(newNode.map)
-   
+
 
 
 
 def main():
+
+    fileName = input("Enter name of a text file: ")
         
-    game = ([line.rstrip('\n') for line in open('puzzle25.txt')])
+    game = ([line.rstrip('\n') for line in open(fileName)])
     breadth(game)
 
   
