@@ -1,5 +1,6 @@
 import sys
 import math
+import timeit
 import numpy as np
 import collections 
 from collections import deque
@@ -66,96 +67,150 @@ possibleMoves5 = (
 
 class Puzzle :
 
-    def __init__(self, board) :
-      self.state = board
-      self.goal = self.setGoal()
-      self.legalMoves = self.setLegalMoves()
-      if self.state:
-            self.map = ''.join(str(e) for e in self.state)
+  def __init__(self, board) :
+    self.state = board
+    self.goal = self.setGoal()
+    self.legalMoves = self.setLegalMoves()
+    if self.state:
+          self.map = ''.join(str(e) for e in self.state)
 
-    def __eq__(self, other):
-        return self.map == other.map
+  def __eq__(self, other):
+      return self.map == other.map
 
-    def __lt__(self, other):
-        return self.map < other.map
+  def __lt__(self, other):
+      return self.map < other.map
 
-    def __str__(self):
-        return str(self.map)
-    
-    def setGoal(self) :
-      if len(self.state) == 9:
-        return goal3
-      if len(self.state) == 16:
-        return goal4
-      if len(self.state) == 24:
-        return goal5
+  def __str__(self):
+      return str(self.map)
+  
+  def setGoal(self) :
+    if len(self.state) == 9:
+      return goal3
+    if len(self.state) == 16:
+      return goal4
+    if len(self.state) == 25:
+      return goal5
 
-    def setLegalMoves(self) :
-      if len(self.state) == 9:
-        return possibleMoves3
-      if len(self.state) == 16:
-        return possibleMoves4
-      if len(self.state) == 25:
-        return possibleMoves5
+  def setLegalMoves(self) :
+    if len(self.state) == 9:
+      return possibleMoves3
+    if len(self.state) == 16:
+      return possibleMoves4
+    if len(self.state) == 25:
+      return possibleMoves5
 
-    def changeMap(self):       
-        self.map = ''.join(str(e) for e in self.state)
+  def changeMap(self):       
+      self.map = ''.join(str(e) for e in self.state)
 
 
 def printBoard(board):
-    board = board.state
-    if len(board) == 9:
-        print("\n".join([" ".join(board[i:i+3]) for i in range(0,len(board),3)]),'\n')
-    if len(board) == 16:
-        print("\n".join([" ".join(board[i:i+4]) for i in range(0,len(board),4)]),'\n')
-    if len(board) == 25:
-        print("\n".join([" ".join(board[i:i+5]) for i in range(0,len(board),5)]),'\n')
+  board = board.state
+  if len(board) == 9:
+      print("\n".join([" ".join(board[i:i+3]) for i in range(0,len(board),3)]),'\n')
+  if len(board) == 16:
+      print("\n".join([" ".join(board[i:i+4]) for i in range(0,len(board),4)]),'\n')
+  if len(board) == 25:
+      print("\n".join([" ".join(board[i:i+5]) for i in range(0,len(board),5)]),'\n')
 
+
+def depth(board):
+
+  numStates = 0
+  visited = set()
+  playStack = deque([Puzzle(board)])
+
+  while playStack:
+
+    node = playStack.pop()
+    visited.add(node.map)
+    numStates += 1
+
+    if node.state == node.goal:
+      print('You win!')
+      print(numStates,'states visited\n')
+      visited.add(node.map)
+      printBoard(node)
+      return playStack
+
+    index = node.state.index('_') 
+    
+    for path in node.legalMoves[index]:          
+      tryMove = node.state[:]
+      newNode = Puzzle(tryMove)
+      newNode.state[index] = newNode.state[path]
+      newNode.state[path] = '_' 
+      newNode.changeMap()     
+        
+      if newNode.map not in visited:
+        printBoard(newNode)
+        playStack.append(newNode)
+        visited.add(newNode.map)
+        numStates += 1
 
 
 
 
 def breadth(board):
 
-    visited = set()
-    playQueue = deque([Puzzle(board)])
-  
-    while playQueue:
+  visited = set()
+  playQueue = deque([Puzzle(board)])
+  numStates = 0
 
-        node = playQueue.popleft()
+  while playQueue:
 
-        visited.add(node.map)
+    node = playQueue.popleft()
 
-        if node.state == node.goal:
-            print('You win!')
-            visited.add(node.map)
-            printBoard(node)
-            return playQueue
+    visited.add(node.map)
+    numStates += 1
 
-        index = node.state.index('_') 
-       
-        for path in node.legalMoves[index]:          
-            tryMove = node.state[:]
-            newNode = Puzzle(tryMove)
-            newNode.state[index] = newNode.state[path]
-            newNode.state[path] = '_' 
-            newNode.changeMap()     
-            
-            if newNode.map not in visited:
-                playQueue.append(newNode)
-                visited.add(newNode.map)
+    if node.state == node.goal:
+      print('You win!')
+      print(numStates,'states visited\n')
+      visited.add(node.map)
+      printBoard(node)
+      return playQueue
+
+    index = node.state.index('_') 
+    
+    for path in node.legalMoves[index]:          
+      tryMove = node.state[:]
+      newNode = Puzzle(tryMove)
+      newNode.state[index] = newNode.state[path]
+      newNode.state[path] = '_' 
+      newNode.changeMap()     
+        
+      if newNode.map not in visited:
+        printBoard(newNode)
+        playQueue.append(newNode)
+        visited.add(newNode.map)
+        numStates += 1
 
 
 
 
 def main():
 
-    fileName = input("Enter name of a text file: ")
-        
-    game = ([line.rstrip('\n') for line in open(fileName)])
-    breadth(game)
+  fileName = input("Enter name of a text file:\n")     
+  game = ([line.rstrip('\n') for line in open(fileName)])
+  selection = '0'
+
+  while selection != '3':
+    selection = input('Select an option:\n1) Depth First Search\n2) Breadth First Search\n3) Quit\n')
+
+    if selection == '1':
+      start = timeit.default_timer()
+      depth(game)
+      stop = timeit.default_timer()
+      print("Length of execution time: ", stop - start, '\n')
+    elif selection == '2':
+      start = timeit.default_timer()
+      breadth(game)
+      stop = timeit.default_timer()
+      print("Length of execution time: ", stop - start, '\n')
+
+  print('Thanks for Playing!')
 
   
 if __name__=='__main__':
-    main()
+  main()
     
