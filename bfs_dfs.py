@@ -126,8 +126,8 @@ def depth(board):
     numStates += 1
 
     if node.state == node.goal:
-      print('You win!')
-      print(numStates,'states visited\n')
+      print('Victory!')
+      print('Depth First Search: ',numStates,'states visited\n')
       visited.add(node.map)
       printBoard(node)
       return playStack
@@ -164,8 +164,8 @@ def breadth(board):
     numStates += 1
 
     if node.state == node.goal:
-      print('You win!')
-      print(numStates,'states visited\n')
+      print('Success!')
+      print('Breadth-First Search: ',numStates,'states visited')
       visited.add(node.map)
       printBoard(node)
       return playQueue
@@ -185,6 +185,49 @@ def breadth(board):
         visited.add(newNode.map)
         numStates += 1
 
+def limDepth(board):
+
+  numStates = 0
+  visited = set()
+  playStack = deque([Puzzle(board)])
+  limit = 0
+
+  while playStack:
+
+    if limit == 30:
+      node = playStack.popleft()
+      visited.add(node.map)
+      numStates += 1 
+      limit = 0
+    else:      
+      node = playStack.pop()
+      visited.add(node.map)
+      numStates += 1
+
+    if node.state == node.goal:
+      print('All done!')
+      print('Depth Limited Search: ',numStates,'states visited\n')
+      visited.add(node.map)
+      printBoard(node)
+      return playStack
+
+    index = node.state.index('_') 
+    
+    for path in node.legalMoves[index]:          
+      tryMove = node.state[:]
+      newNode = Puzzle(tryMove)
+      newNode.state[index] = newNode.state[path]
+      newNode.state[path] = '_' 
+      newNode.changeMap()  
+      limit +=1   
+        
+      if newNode.map not in visited:
+        printBoard(newNode)
+        playStack.append(newNode)
+        visited.add(newNode.map)
+        numStates += 1
+        
+
 
 
 
@@ -194,8 +237,8 @@ def main():
   game = ([line.rstrip('\n') for line in open(fileName)])
   selection = '0'
 
-  while selection != '3':
-    selection = input('Select an option:\n1) Depth First Search\n2) Breadth First Search\n3) Quit\n')
+  while selection != '4':
+    selection = input('Select an option:\n1) Depth First Search\n2) Breadth First Search\n3) Limited Depth Search\n4) Quit\n')
 
     if selection == '1':
       start = timeit.default_timer()
@@ -205,6 +248,11 @@ def main():
     elif selection == '2':
       start = timeit.default_timer()
       breadth(game)
+      stop = timeit.default_timer()
+      print("Length of execution time: ", stop - start, '\n')
+    elif selection == '3':
+      start = timeit.default_timer()
+      limDepth(game)
       stop = timeit.default_timer()
       print("Length of execution time: ", stop - start, '\n')
 
