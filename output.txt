@@ -1,0 +1,55 @@
+
+3 x 3 Puzzle
+puzzle_a.txt
+
+Depth-First Search:
+Puzzle Solved:
+5358 states visited
+Length of execution time: 0.02959889998601284
+
+Breath-First Search:
+Puzzle Solved:
+721 states visited
+Length of execution time: 0.005650999999488704
+
+------------------------------------------------------------------------------------
+
+3 x 3 Puzzle
+puzzle_b.txt
+
+Depth-First Search:
+Puzzle Solved:
+60253 states visited
+Length of execution time: 0.29327430001285393
+
+Breath-First Search:
+Puzzle Solved:
+32652 states visited
+Length of execution time: 0.1606772999948589
+
+--------------------------------------------------------------------------------------------------
+
+4 x 4 Puzzle
+puzzle_c.txt
+
+Depth-First Search:
+Function timeout: 3611.422057100004 seconds
+169034101 states visited
+
+Breath-First Search:
+Puzzle Solved:
+2227 states visited
+Length of execution time: 0.018993700010469183 
+
+--------------------------------------------------------------------------------------------------
+
+5 x 5 Puzzle
+test.txt
+
+Depth-First Search:
+Function timeout: 1829.9969628999988 seconds
+126044529 states visited
+
+Breath-First Search:
+Function timeout: 3622.275265099999 seconds
+126831563 states visited
