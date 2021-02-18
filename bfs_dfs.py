@@ -272,7 +272,7 @@ def breadth(board,f) -> bool:
         numStates += 1
     
     if (timeit.default_timer() - start) > 3600:
-      f.writelines('Function timeout: ' + str(timeit.default_timer() - start) + ' seconds' + '\n' + str(numStates) + ' states visited\n'))
+      f.writelines('Function timeout: ' + str(timeit.default_timer() - start) + ' seconds' + '\n' + str(numStates) + ' states visited\n')
       return False
 
 
@@ -284,7 +284,7 @@ def main():
   selection = '0'
   f = open('output.txt', 'a')  
 
-  selection = input('Select an option:\n1) Depth First Search\n2) Breadth First Search\n)    
+  selection = input('Select an option:\n1) Depth First Search\n2) Breadth First Search\n')    
 
   if selection == '1':
     f.writelines('\nDepth-First Search:\n')
