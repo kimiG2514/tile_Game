@@ -211,7 +211,7 @@ def depth(board,f) -> bool:
         visited.add(newNode.map)
         numStates += 1
 
-    if (timeit.default_timer() - start) > 1800:
+    if (timeit.default_timer() - start) > 3600:
       f.writelines('Function timeout: ' + str(timeit.default_timer() - start) + ' seconds' + '\n' + str(numStates) + ' states visited\n')
       return False
 
