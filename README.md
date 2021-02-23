@@ -4,7 +4,7 @@ Assignment 1 - Uninformed Search
 Authors
 ------- 
 Kimberly Gonzales
-Patricia Ile Mendoza
+Patricia Ile-Mendoza
 
 This is a programing assignment for uninformed search; breadth first search (BFS) and depth first search (DFS).
 
@@ -60,6 +60,7 @@ Analysis
 **For the output file, all searches were limited to a 3 hour execution time 
 
 3 x 3 Puzzle [ 8 number puzzle]
+-------------------------------
  input -> puzzle_a.txt 
 
 (DFS)Depth-First Search:
@@ -73,9 +74,11 @@ Puzzle Solved:
 Length of execution time: 0.005650999999488704
 
 In this case, BFS won speed and won by visiting significantly less states!
+
 -------------------------------------------------------------
 
 3 x 3 Puzzle [ 8 number puzzle]
+-------------------------------
 input -> puzzle_b.txt 
 
 (DFS) Depth-First Search:
@@ -89,9 +92,11 @@ Puzzle Solved:
 Length of execution time: 0.1606772999948589
 
 Precisely as the prior run, BFS won both speed and states visited.
+
 ------------------------------------------------------------
 
 4 x 4 Puzzle [ 15 number puzzle]
+--------------------------------
 input -> puzzle_c.txt 
 
 (DFS)Depth-First Search:
@@ -104,9 +109,11 @@ Puzzle Solved:
 Length of execution time: 0.018993700010469183 
 
 The BFS algorithm successfuly reached the goal state, the DFS search timed out prior to completion
+
 -------------------------------------------------------------
 
 5 x 5 Puzzle [ 24 number puzzle]
+--------------------------------
 input -> test.txt
 
 (DFS) Depth-First Search:
