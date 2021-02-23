@@ -1,8 +1,7 @@
-CS480/580 Introduction to Artificial Intelligence
-Assignment 1 - Uninformed Search
+Uninformed Search
+-----------------------------------------------------------
 
-Authors
-------- 
+Authors:
 Kimberly Gonzales
 Patricia Ile-Mendoza
 
@@ -12,7 +11,7 @@ The assigned problem is a 25 tile slider puzzle that needs to follow ascending n
 
 This program has three otions to display functionality. First is the 8 count puzzle, second is the 15 count puzzle and lastly is the 24 count puzzle to demonstrate the full difference between BFS and DFS
 
---------------------------------------------------------------
+--------------------------------------------------------
 
 Contents
 --------
@@ -55,8 +54,8 @@ BFS - Breadth first search is implemented using a data structure that emulates a
 Both searches were implemented with the use of a deque, .pop() for DFS, and .popleft() for the BFS.
 
 
-Analysis
---------
+Output Analysis
+----------------------------------------------------------
 **For the output file, all searches were limited to a 3 hour execution time 
 
 3 x 3 Puzzle [ 8 number puzzle]
@@ -75,7 +74,7 @@ Length of execution time: 0.005650999999488704
 
 In this case, BFS won speed and won by visiting significantly less states!
 
--------------------------------------------------------------
+
 
 3 x 3 Puzzle [ 8 number puzzle]
 -------------------------------
@@ -93,7 +92,7 @@ Length of execution time: 0.1606772999948589
 
 Precisely as the prior run, BFS won both speed and states visited.
 
-------------------------------------------------------------
+
 
 4 x 4 Puzzle [ 15 number puzzle]
 --------------------------------
@@ -110,7 +109,7 @@ Length of execution time: 0.018993700010469183
 
 The BFS algorithm successfuly reached the goal state, the DFS search timed out prior to completion
 
--------------------------------------------------------------
+
 
 5 x 5 Puzzle [ 24 number puzzle]
 --------------------------------
