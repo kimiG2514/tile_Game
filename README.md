@@ -52,7 +52,7 @@ DFS - Depth first search is implemented using a data structure that emulates a s
 
 BFS - Breadth first search is implemented using a data structure that emulates a queue (FIFO)
 
-Both searches were implemented with the use of a deque, pop.() for DFS, and .popleft() for the BFS.
+Both searches were implemented with the use of a deque, .pop() for DFS, and .popleft() for the BFS.
 
 
 Analysis
