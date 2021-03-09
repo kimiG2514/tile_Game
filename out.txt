@@ -1,0 +1,37 @@
+3 x 3 Puzzle
+puzzle_a.txt
+
+Informed Search:
+Puzzle Solved:
+17 states visited
+Length of execution time: 0.0013490000001183944
+
+------------------------------------------------------------------------------------------
+
+3 x 3 Puzzle
+puzzle_b.txt
+
+Informed Search:
+Puzzle Solved:
+171 states visited
+Length of execution time: 0.006128200000603101
+
+------------------------------------------------------------------------------------------
+
+4 x 4 Puzzle
+puzzle_c.txt
+
+Informed Search:
+Puzzle Solved:
+34 states visited
+Length of execution time: 0.0028794999998353887
+
+-----------------------------------------------------------------------------------------
+
+5 x 5
+test.txt
+
+Informed Search:
+Puzzle not solved, timed out
+341809 states visited
+Function timeout: 1800.0128207999996 seconds
