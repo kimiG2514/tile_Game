@@ -35,3 +35,5 @@ Informed Search:
 Puzzle not solved, timed out
 341809 states visited
 Function timeout: 1800.0128207999996 seconds
+
+

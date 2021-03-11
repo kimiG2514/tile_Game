@@ -174,8 +174,8 @@ def printBoard(board):
 
 
 
-def makeMatrix(boardList): -> list
-"""
+def makeMatrix(boardList) -> list:
+  """
   accepts a list and converts it to a 2 dimensional list,
   returns a two dimensional list
 
@@ -323,7 +323,7 @@ def breadth(board,f) -> bool:
 
 
 
-def aStar(board,f): -> bool
+def aStar(board,f) -> bool:
   """
   attempts to reach the goal state using A* search,
   returns a boolean
@@ -390,7 +390,7 @@ def aStar(board,f): -> bool
 
 
 
-def manhattan(node): -> int
+def manhattan(node) -> int:
   """
   calculate the path cost of a move using the manhattan 
   search algorithm, returns an int
@@ -401,20 +401,20 @@ def manhattan(node): -> int
     object representing a puzzle
  
   """
-    distance = 0
-    current_matrix = makeMatrix(node.state)
-    goal_matrix = makeMatrix(node.goal)  
+  distance = 0
+  current_matrix = makeMatrix(node.state)
+  goal_matrix = makeMatrix(node.goal)  
 
-    for i in range(0,(len(current_matrix))):
-        for j in range(0,(len(current_matrix))):
-            if current_matrix[i][j] != '_':
-                for item in goal_matrix:
-                    if current_matrix[i][j] in item:
-                        x = goal_matrix.index(item)
-                        y = item.index(current_matrix[i][j])
-                distance = distance + (abs(x - i) + abs(y - j))
-  
-    return distance
+  for i in range(0,(len(current_matrix))):
+      for j in range(0,(len(current_matrix))):
+          if current_matrix[i][j] != '_':
+              for item in goal_matrix:
+                  if current_matrix[i][j] in item:
+                      x = goal_matrix.index(item)
+                      y = item.index(current_matrix[i][j])
+              distance = distance + (abs(x - i) + abs(y - j))
+
+  return distance
     
  
 
