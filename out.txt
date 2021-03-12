@@ -1,64 +1,35 @@
 3 x 3 Puzzle
 puzzle_a.txt
 
-Informed Search:
+Distance Heuristics:
 Puzzle Solved:
-17 states visited
-Length of execution time: 0.0013490000001183944
+445 states visited
+Distance Heuristics: 0.008853899998939596
 
-------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 3 x 3 Puzzle
-puzzle_b.txt
+puzzle_a.txt
 
-Informed Search:
+Misplaced Tiles Heuristics:
 Puzzle Solved:
-171 states visited
-Length of execution time: 0.006128200000603101
-
-------------------------------------------------------------------------------------------
-
-4 x 4 Puzzle
-puzzle_c.txt
-
-Informed Search:
-Puzzle Solved:
-34 states visited
-Length of execution time: 0.0028794999998353887
+17 states visited
+Length of execution time: 0.0019382000027690083
 
 -----------------------------------------------------------------------------------------
 
 5 x 5
 test.txt
 
-Informed Search:
-Puzzle not solved, timed out
-341809 states visited
-Function timeout: 1800.0128207999996 seconds
-
-
-
-
-Misplaced Tiles Heuristics:
-
-Misplaced Tiles Heuristics:
-
-Depth-First Search:
-Puzzle Solved:
-131458 states visited
-Length of execution time: 0.6342672999890056
-
-Misplaced Tiles Heuristics:
-Puzzle Solved:
-445 states visited
-Distance Heuristics: 0.008853899998939596
-
-Informed Search:
-Puzzle Solved:
-17 states visited
-Length of execution time: 0.0019382000027690083
-
 Distance Heuristics:
 Function timeout: 1800.0148664000008 seconds
 357015 states visited
 
+-----------------------------------------------------------------------------------------
+
+5 x 5
+test.txt
+
+Misplaced Tile Heuristics:
+Function timeout: 1800.0198120999994 seconds
+359680 states visited
