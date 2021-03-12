@@ -532,13 +532,13 @@ def main():
     if win:
       f.writelines("Length of execution time: " + str(timeit.default_timer() - start) + '\n') 
   elif selection == '3':    
-    f.writelines('\nMisplaced Tiles Heuristics:\n')
+    f.writelines('\nDistance Heuristics:\n')
     start = timeit.default_timer()
     win = sumOfMisplaced(game,f)    
     if win:
       f.writelines("Length of execution time: " + str(timeit.default_timer() - start) + '\n')
   elif selection == '4':    
-    f.writelines('\nDistance Heuristics:\n')
+    f.writelines('\nMisplaced Tile Heuristics:\n')
     start = timeit.default_timer()
     win = sumOfDistance(game,f)    
     if win:

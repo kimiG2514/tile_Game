@@ -57,3 +57,8 @@ Informed Search:
 Puzzle Solved:
 17 states visited
 Length of execution time: 0.0019382000027690083
+
+Distance Heuristics:
+Function timeout: 1800.0148664000008 seconds
+357015 states visited
+
