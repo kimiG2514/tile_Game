@@ -536,9 +536,9 @@ def main():
     start = timeit.default_timer()
     win = sumOfMisplaced(game,f)    
     if win:
-      f.writelines("Distance Heuristics: " + str(timeit.default_timer() - start) + '\n')
+      f.writelines("Length of execution time: " + str(timeit.default_timer() - start) + '\n')
   elif selection == '4':    
-    f.writelines('\nInformed Search:\n')
+    f.writelines('\nDistance Heuristics:\n')
     start = timeit.default_timer()
     win = sumOfDistance(game,f)    
     if win:
