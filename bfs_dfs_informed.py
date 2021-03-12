@@ -323,7 +323,7 @@ def breadth(board,f) -> bool:
 
 
 
-def aStar(board,f) -> bool:
+def sumOfDistance(board,f) -> bool:
   """
   attempts to reach the goal state using A* search,
   returns a boolean
@@ -390,6 +390,73 @@ def aStar(board,f) -> bool:
 
 
 
+def sumOfMisplaced(board,f) -> bool:
+  """
+  attempts to reach the goal state using a number of misplaced tiles as a heuristic
+
+  Parameters
+  ----------
+  board : list
+    a list representing the state of the board
+  f : IO
+    output path
+  """
+
+  global MaxDepth
+  numStates, printed = 0, 0 
+  start = timeit.default_timer()
+  visited = set()
+  playQueue = []
+  
+
+  node = Puzzle(board,0)
+  node.key = numMisplaced(node)
+  node.changeMap()
+
+  playQueue.append(node)
+
+  while(playQueue):
+
+    playQueue.sort(key = lambda x: x.key)
+
+    inPlay = playQueue.pop(0)
+    visited.add(inPlay.map)
+
+    if inPlay.state == inPlay.goal:
+      print('Success!')
+      f.writelines('Puzzle Solved:\n' + str(numStates) + ' states visited\n')
+      printBoard(inPlay)
+      return True
+
+    index = inPlay.state.index('_')
+    
+    for path in inPlay.legalMoves[index]:          
+      tryMove = inPlay.state[:]
+      newNode = Puzzle(tryMove,0)
+      newNode.state[index] = newNode.state[path]
+      newNode.state[path] = '_'
+      newNode.changeMap()    
+      if printed < 5 :        
+        printBoard(newNode)
+        printed += 1         
+        
+      if newNode.map not in visited:
+        key = numMisplaced(newNode)
+        newNode.key = key + newNode.depth
+        newNode.changeMap()   
+        playQueue.append(newNode)
+        visited.add(newNode.map)
+        numStates += 1
+        if newNode.depth > MaxDepth:
+          MaxDepth+=1
+
+      if (timeit.default_timer() - start) > 1800:
+        f.writelines('Function timeout: ' + str(timeit.default_timer() - start) + ' seconds' + '\n' + str(numStates) + ' states visited\n')
+        return False
+
+
+
+#calculate distance
 def manhattan(node) -> int:
   """
   calculate the path cost of a move using the manhattan 
@@ -415,6 +482,26 @@ def manhattan(node) -> int:
               distance = distance + (abs(x - i) + abs(y - j))
 
   return distance
+
+
+
+
+#calculate the number of misplaced tiles
+def numMisplaced(graph):
+  ofp = 0
+  for x in range(0, 8):
+    if graph.state[x] != graph.goal[x]: 
+        ofp += 1
+
+  for x in range(0, 16):
+    if graph.state[x] != graph.goal[x]: 
+        ofp += 1
+
+  for x in range(0, 25):
+    if graph.state[x] != graph.goal[x]: 
+        ofp += 1
+
+  return ofp
     
  
 
@@ -426,7 +513,7 @@ def main():
   selection = '0'
   f = open('out.txt', 'a')  
 
-  selection = input('Select an option:\n1) Depth First Search\n2) Breadth First Search\n3) Hueristic\n')    
+  selection = input('Select an option:\n1) Depth First Search\n2) Breadth First Search\n3) Distance Heuristic\n4)Misplaced Tiles Heuristics\n')    
 
   if selection == '1':
     f.writelines('\nDepth-First Search:\n')
@@ -442,9 +529,15 @@ def main():
     if win:
       f.writelines("Length of execution time: " + str(timeit.default_timer() - start) + '\n') 
   elif selection == '3':    
+    f.writelines('\nMisplaced Tiles Heuristics:\n')
+    start = timeit.default_timer()
+    win = sumOfMisplaced(game,f)    
+    if win:
+      f.writelines("Distance Heuristics: " + str(timeit.default_timer() - start) + '\n')
+  elif selection == '4':    
     f.writelines('\nInformed Search:\n')
     start = timeit.default_timer()
-    win = aStar(game,f)    
+    win = sumOfDistance(game,f)    
     if win:
       f.writelines("Length of execution time: " + str(timeit.default_timer() - start) + '\n')
 

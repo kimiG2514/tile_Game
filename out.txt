@@ -37,3 +37,13 @@ Puzzle not solved, timed out
 Function timeout: 1800.0128207999996 seconds
 
 
+
+Informed Search:
+
+Misplaced Tiles Heuristics:
+
+Misplaced Tiles Heuristics:
+
+Misplaced Tiles Heuristics:
+
+Informed Search:
