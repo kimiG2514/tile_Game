@@ -489,17 +489,20 @@ def manhattan(node) -> int:
 #calculate the number of misplaced tiles
 def numMisplaced(graph):
   ofp = 0
-  for x in range(0, 8):
-    if graph.state[x] != graph.goal[x]: 
-        ofp += 1
+  if len(graph.state) == 7:
+    for x in range(0, 8):
+      if graph.state[x] != graph.goal[x]: 
+          ofp += 1
 
-  for x in range(0, 16):
-    if graph.state[x] != graph.goal[x]: 
-        ofp += 1
+  if len(graph.state) == 15:
+    for x in range(0, 16):
+      if graph.state[x] != graph.goal[x]: 
+          ofp += 1
 
-  for x in range(0, 25):
-    if graph.state[x] != graph.goal[x]: 
-        ofp += 1
+  if len(graph.state) == 24:
+    for x in range(0, 25):
+      if graph.state[x] != graph.goal[x]: 
+          ofp += 1
 
   return ofp
     

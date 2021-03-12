@@ -38,12 +38,22 @@ Function timeout: 1800.0128207999996 seconds
 
 
 
+
+Misplaced Tiles Heuristics:
+
+Misplaced Tiles Heuristics:
+
+Depth-First Search:
+Puzzle Solved:
+131458 states visited
+Length of execution time: 0.6342672999890056
+
+Misplaced Tiles Heuristics:
+Puzzle Solved:
+445 states visited
+Distance Heuristics: 0.008853899998939596
+
 Informed Search:
-
-Misplaced Tiles Heuristics:
-
-Misplaced Tiles Heuristics:
-
-Misplaced Tiles Heuristics:
-
-Informed Search:
+Puzzle Solved:
+17 states visited
+Length of execution time: 0.0019382000027690083
